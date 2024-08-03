@@ -7,8 +7,21 @@ ActiveAdmin.register Product do
     column :title
     column :description
     column :price
-    column :image_url
+    column :image do |product|
+      image_tag(product.image_url, size: "50x50") if product.image_url.present?
+    end
     actions
+  end
+
+  show do
+    attributes_table do
+      row :title
+      row :description
+      row :price
+      row :image do |product|
+        image_tag(product.image_url, size: "200x200") if product.image_url.present?
+      end
+    end
   end
 
   form do |f|

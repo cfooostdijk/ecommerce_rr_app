@@ -9,7 +9,11 @@ ActiveAdmin.register Order do
     column :customer_email
     column :total
     column "Products" do |order|
-      order.order_items.map { |oi| link_to(oi.product.title, admin_product_path(oi.product)) }.join(", ").html_safe
+      order.order_items.map do |oi|
+        link_to(admin_product_path(oi.product)) do
+          "#{image_tag(oi.product.image_url, size: "50x50")} #{oi.product.title}".html_safe
+        end
+      end.join("<br>").html_safe
     end
     actions
   end
@@ -27,7 +31,9 @@ ActiveAdmin.register Order do
     panel "Products" do
       table_for order.order_items do
         column "Product" do |order_item|
-          link_to order_item.product.title, admin_product_path(order_item.product)
+          link_to admin_product_path(order_item.product) do
+            "#{image_tag(order_item.product.image_url, size: "50x50")} #{order_item.product.title}".html_safe
+          end
         end
         column :quantity
         column :price
