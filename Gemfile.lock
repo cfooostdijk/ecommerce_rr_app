@@ -125,6 +125,11 @@ GEM
       ruby2_keywords
     drb (2.2.1)
     erubi (1.13.0)
+    faraday (2.10.1)
+      faraday-net_http (>= 2.0, < 3.2)
+      logger
+    faraday-net_http (3.1.1)
+      net-http
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-arm-linux-gnu)
     ffi (1.17.0-arm64-darwin)
@@ -146,6 +151,7 @@ GEM
       has_scope (>= 0.6)
       railties (>= 6.0)
       responders (>= 2)
+    interactor (3.1.2)
     io-console (0.7.2)
     irb (1.14.0)
       rdoc (>= 4.0.0)
@@ -171,6 +177,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    logger (1.6.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -184,6 +191,8 @@ GEM
     minitest (5.24.1)
     msgpack (1.7.2)
     mutex_m (0.2.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.14)
       date
       net-protocol
@@ -300,6 +309,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -329,6 +339,8 @@ DEPENDENCIES
   debug
   devise
   draper
+  faraday (~> 2.10, >= 2.10.1)
+  interactor
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
