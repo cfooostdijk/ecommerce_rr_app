@@ -1,4 +1,4 @@
-class Api::V1::LandingController < ApplicationController
+class CatalogController < ApplicationController
   def index
   end
 end

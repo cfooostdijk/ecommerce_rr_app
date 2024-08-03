@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Header from "./Header";
 
 const Catalog = () => {
-  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -17,16 +17,18 @@ const Catalog = () => {
       .then((res) => setProducts(res));
   }, []);
 
-  const allProducts = products.map((product, index) => (
-    <div key={index} className="col-md-6 col-lg-4">
-      <div className="card mb-4">
+  const allProducts = products.map((product) => (
+    <div key={product.id} className="col-md-6 col-lg-4 mb-4">
+      <div className="card border-light shadow rounded">
         <img
           src={product.image}
-          className="card-img-top"
+          className="card-img-top rounded-top"
           alt={`${product.name} image`}
+          style={{ objectFit: "cover", height: "200px" }}
         />
         <div className="card-body">
           <h5 className="card-title">{product.name}</h5>
+          <p className="card-text text-muted">Price: ${product.price}</p>
           <Link to={`/product/${product.id}`} className="btn custom-button">
             View Product
           </Link>
@@ -34,23 +36,22 @@ const Catalog = () => {
       </div>
     </div>
   ));
+
   const noProduct = (
     <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
-      <h4>
-        No products yet...
-      </h4>
+      <h4>No products yet...</h4>
     </div>
   );
 
   return (
     <>
-      <section className="jumbotron jumbotron-fluid text-center">
+      <Header />
+      <section className="jumbotron jumbotron-fluid text-center mb-4">
         <div className="container py-5">
-          <h1 className="display-4">Product for every occasion</h1>
+          <h1 className="display-4">Products for Every Occasion</h1>
           <p className="lead text-muted">
-            We’ve pulled together our most popular products, our latest
-            additions, and our editor’s picks, so there’s sure to be something
-            tempting for you to try.
+            We’ve pulled together our most popular products, our latest additions,
+            and our editor’s picks, so there’s sure to be something tempting for you to try.
           </p>
         </div>
       </section>
@@ -59,7 +60,7 @@ const Catalog = () => {
           <div className="row">
             {products.length > 0 ? allProducts : noProduct}
           </div>
-          <Link to="/" className="btn btn-link">
+          <Link to="/" className="btn btn-link mt-4">
             Home
           </Link>
         </main>
