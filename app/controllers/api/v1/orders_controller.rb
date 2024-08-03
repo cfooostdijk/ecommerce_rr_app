@@ -2,11 +2,7 @@ module Api
   module V1
     class OrdersController < ApplicationController
       def create
-        product = Product.find(params[:product_id])
-        total_amount = product.price
-        order = Order.new(order_params.merge(total: total_amount))
-        order.product = product
-
+        order = Order.new(order_params)
         if order.save
           render json: order, status: :created
         else
@@ -17,7 +13,7 @@ module Api
       private
 
       def order_params
-        params.require(:order).permit(:customer_first_name, :customer_last_name, :customer_email)
+        params.require(:order).permit(:customer_first_name, :customer_last_name, :customer_email, order_items_attributes: [:product_id, :quantity, :price])
       end
     end
   end

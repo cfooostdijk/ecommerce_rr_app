@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_03_031711) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_03_035741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,15 +40,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_031711) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity", default: 1, null: false
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "customer_first_name"
     t.string "customer_last_name"
     t.string "customer_email"
-    t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "total"
-    t.index ["product_id"], name: "index_orders_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -61,5 +70,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_031711) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "orders", "products"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
 end
