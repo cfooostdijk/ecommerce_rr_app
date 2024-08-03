@@ -18,13 +18,13 @@ export default () => (
           >
             View Clothes
           </Link>
-          <Link
-            to="/dashboard"
+          <a
+            href="/admin"
             className="btn btn-lg custom-button mx-2"
             role="button"
           >
             Go Dashboard
-          </Link>
+          </a>
         </div>
       </div>
     </div>
