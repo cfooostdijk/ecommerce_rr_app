@@ -12,7 +12,7 @@ export default () => (
         <hr className="my-4" />
         <div className="container secondary-color d-flex justify-content-between">
           <Link
-            to="/"
+            to="/catalog"
             className="btn btn-lg custom-button mx-2"
             role="button"
           >
