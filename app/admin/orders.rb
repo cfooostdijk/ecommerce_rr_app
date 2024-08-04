@@ -66,4 +66,15 @@ ActiveAdmin.register Order do
   filter :total
   filter :created_at
   filter :updated_at
+
+  csv do
+    column :id
+    column :customer_first_name
+    column :customer_last_name
+    column :customer_email
+    column :total
+    column('Products') { |order| order.products.map(&:title).join(', ') }
+    column :created_at
+    column :updated_at
+  end
 end
