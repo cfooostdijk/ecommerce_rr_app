@@ -2,14 +2,8 @@ module Api
   module V1
     class ProductsController < ApplicationController
       def index
-        result = FetchProducts.call
-
-        if result.success?
-          @products = result.products
-          render json: @products
-        else
-          render json: { error: result.message }, status: :unprocessable_entity
-        end
+        @products = Product.all
+        render json: @products
       end
 
       def show

@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :orders, only: [:create]
-      resources :products, only: [:index, :show]
+      resources :products, only: [:index, :show] do
+        collection { post :import }
+      end
     end
   end
 end

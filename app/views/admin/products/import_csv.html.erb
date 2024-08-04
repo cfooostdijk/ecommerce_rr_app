@@ -1,0 +1,6 @@
+<%= form_for :csv_import, url: import_csv_admin_products_path, html: { multipart: true } do |f| %>
+  <%= f.label :file, "Upload CSV" %>
+  <%= f.file_field :file %>
+  <%= f.hidden_field :source, value: source %>
+  <%= f.submit "Upload CSV" %>
+<% end %>
