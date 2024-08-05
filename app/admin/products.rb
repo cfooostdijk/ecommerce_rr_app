@@ -50,13 +50,8 @@ ActiveAdmin.register Product do
     strategy = params[:source]
 
     if strategy.present?
-      result = ProductImportStrategy.new(strategy).execute
-
-      if result[:success]
-        redirect_to admin_products_path, notice: 'Products imported successfully!'
-      else
-        redirect_to admin_products_path, alert: "Failed to import products: #{result[:message]}"
-      end
+      ProductImportWorker.perform_async(strategy)
+      redirect_to admin_products_path, notice: 'Products import task has been enqueued!'
     else
       redirect_to admin_products_path, alert: 'No source specified.'
     end
