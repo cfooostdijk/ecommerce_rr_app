@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'homepage#index'
   get '/catalog', to: 'catalog#index'
@@ -14,6 +16,5 @@ Rails.application.routes.draw do
     end
   end
 
-  require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 end

@@ -21,13 +21,13 @@ const Catalog = () => {
     <div key={product.id} className="col-md-6 col-lg-4 mb-4">
       <div className="card border-light shadow rounded">
         <img
-          src={product.image}
+          src={product.image_url}
           className="card-img-top rounded-top"
-          alt={`${product.name} image`}
+          alt={`${product.title} image`}
           style={{ objectFit: "cover", height: "200px" }}
         />
         <div className="card-body">
-          <h5 className="card-title">{product.name}</h5>
+          <h5 className="card-title">{product.title}</h5>
           <p className="card-text text-muted">Price: ${product.price}</p>
           <Link to={`/product/${product.id}`} className="btn custom-button">
             View Product
