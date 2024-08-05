@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class to define product_import_strategy
 class ProductImportStrategy
   STRATEGIES = {
     api: ApiImporter::FetchProducts,

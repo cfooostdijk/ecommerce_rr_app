@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module CsvImporter
+  # Class to define interactor
   class FindOrInitializeProduct
     include Interactor
 

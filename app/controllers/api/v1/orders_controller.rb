@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Api
   module V1
+    # Class to define orders
     class OrdersController < ApplicationController
       protect_from_forgery with: :null_session
 
@@ -16,7 +19,8 @@ module Api
       private
 
       def order_params
-        params.require(:order).permit(:customer_first_name, :customer_last_name, :customer_email, :total, order_items_attributes: [:product_id, :quantity, :price])
+        params.require(:order).permit(:customer_first_name, :customer_last_name, :customer_email, :total,
+                                      order_items_attributes: %i[product_id quantity price])
       end
     end
   end

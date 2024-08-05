@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require 'roo'
 
 module CsvImporter
+  # Class to define interactor
   class InitializeSpreadsheet
     include Interactor
 

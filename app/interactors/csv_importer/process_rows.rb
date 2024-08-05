@@ -1,17 +1,35 @@
+# frozen_string_literal: true
+
 module CsvImporter
-  class ProcessRows
+  # Class to define interactor
+  class FindOrInitializeProduct
     include Interactor
 
     def call
-      rows = []
-      normalized_header = context.header.map(&:downcase)
-      (2..context.spreadsheet.last_row).each do |i|
-        row = Hash[[normalized_header, context.spreadsheet.row(i)].transpose]
-        rows << row
-      end
-      context.rows = rows
+      context.rows = process_rows
     rescue StandardError => e
       context.fail!(message: "Failed to process rows: #{e.message}")
+    end
+
+    private
+
+    def process_rows
+      header = normalize_header
+      fetch_rows.map { |row| create_row_hash(header, row) }
+    end
+
+    def normalize_header
+      context.header.map(&:downcase)
+    end
+
+    def fetch_rows
+      (2..context.spreadsheet.last_row).map do |i|
+        context.spreadsheet.row(i)
+      end
+    end
+
+    def create_row_hash(header, row)
+      Hash[[header, row].transpose]
     end
   end
 end

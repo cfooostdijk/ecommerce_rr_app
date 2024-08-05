@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class to define worker
 class ProductImportWorker
   include Sidekiq::Worker
 
@@ -5,7 +8,7 @@ class ProductImportWorker
     result = ProductImportStrategy.new(strategy, file).execute
 
     if result[:success]
-      Rails.logger.info("Products imported successfully!")
+      Rails.logger.info('Products imported successfully!')
     else
       Rails.logger.error("Failed to import products: #{result[:message]}")
     end

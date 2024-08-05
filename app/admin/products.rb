@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Product do
   permit_params :title, :description, :price, :image_url
 
@@ -9,7 +11,7 @@ ActiveAdmin.register Product do
     column :price
     column :api_id
     column :image do |product|
-      image_tag(product.image_url, size: "50x50") if product.image_url.present?
+      image_tag(product.image_url, size: '50x50') if product.image_url.present?
     end
     actions
   end
@@ -21,7 +23,7 @@ ActiveAdmin.register Product do
       row :price
       row :api_id
       row :image do |product|
-        image_tag(product.image_url, size: "200x200") if product.image_url.present?
+        image_tag(product.image_url, size: '200x200') if product.image_url.present?
       end
     end
   end
@@ -67,7 +69,7 @@ ActiveAdmin.register Product do
 
   collection_action :import_csv, method: :post do
     file = params.dig(:csv_import, :file)
-    strategy = params.dig(:csv_import,:source)
+    strategy = params.dig(:csv_import, :source)
 
     if file.present? && strategy.present?
       result = ProductImportStrategy.new(strategy, file).execute

@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module ApiImporter
+  # Class to define interactor
   class ParseResponse
     include Interactor
 
