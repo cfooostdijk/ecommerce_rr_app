@@ -19,6 +19,6 @@ class Order < ApplicationRecord
   end
 
   def calculate_total
-    self.total = order_items.sum('price * quantity')
+    self.total = order_items.sum { |item| BigDecimal(item.price.to_s) * item.quantity }
   end
 end

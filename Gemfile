@@ -71,6 +71,21 @@ gem 'sidekiq', '~> 5.2.8'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
+
+  gem 'rspec-rails'
+
+  gem 'shoulda-matchers'
+
+  gem 'vcr'
+
+  gem 'webmock'
+
+  gem 'factory_bot_rails'
+
+  gem 'faker'
+
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -85,4 +100,6 @@ group :development do
 
   # RuboCop is a Ruby static code analyzer and formatter, based on the community Ruby style guide.
   gem 'rubocop'
+
+  gem 'simplecov', require: false
 end

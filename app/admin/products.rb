@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Product do
-  permit_params :title, :description, :price, :image_url
+  permit_params :title, :description, :price, :image_url, :api_id
 
   index do
     selectable_column
@@ -10,7 +10,7 @@ ActiveAdmin.register Product do
     column :description
     column :price
     column :api_id
-    column :image do |product|
+    column :image_url do |product|
       image_tag(product.image_url, size: '50x50') if product.image_url.present?
     end
     actions
@@ -22,7 +22,7 @@ ActiveAdmin.register Product do
       row :description
       row :price
       row :api_id
-      row :image do |product|
+      row :image_url do |product|
         image_tag(product.image_url, size: '200x200') if product.image_url.present?
       end
     end
@@ -33,7 +33,7 @@ ActiveAdmin.register Product do
       f.input :title
       f.input :description
       f.input :price
-      f.input :api_id
+      f.input :api_id, as: :number
       f.input :image_url
     end
     f.actions
@@ -80,7 +80,7 @@ ActiveAdmin.register Product do
         redirect_to admin_products_path, alert: "Failed to import products: #{result[:message]}"
       end
     else
-      redirect_to admin_products_path, alert: 'No file providedor or No source specified..'
+      redirect_to admin_products_path, alert: 'No file providedor or No source specified.'
     end
   end
 end

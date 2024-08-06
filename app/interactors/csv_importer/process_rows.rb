@@ -2,7 +2,7 @@
 
 module CsvImporter
   # Class to define interactor
-  class FindOrInitializeProduct
+  class ProcessRows
     include Interactor
 
     def call
